@@ -24,8 +24,8 @@ Los elementos del conjunto son 5, 1 y 3, cuya sumatoria es igual a 9.
 
 # Consideraciones.
 
-* Para para un conjunto agrupado del 30% de los casos $2\leq n \leq 10^6$
-* Para para un conjunto agrupado del 70% de los casos $10^6\leq n \leq 3 \times 10^7$
+* Para para un conjunto agrupado del 30% de los casos $2\leq n \leq 45 \times 10^3$
+* Para para un conjunto agrupado del 70% de los casos $45 \times 10^3 \leq n \leq 10^9$
 
 #Buddy te recuerda.
 En matemáticas, el mínimo común múltiplo (abreviado m.c.m.) de dos números naturales es el menor número natural que es múltiplo de ambos números.
