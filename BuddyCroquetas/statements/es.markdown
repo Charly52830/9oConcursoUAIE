@@ -1,21 +1,57 @@
-#Descripción.
+# Descripción.
 
-Cuando la dueña de Buddy llegó de la escuela, Buddy rápido fue por las croquetas para decirle que lo sacara a pasear.
-Sin embargo, como todo perro cuando ve a su dueño, estaba tan emocionado que terminó tirando el costal de croquetas por todo el patio.
+Cuando la dueña de Buddy se fue de vacaciones a la costa del golfo de México, Buddy organizó una fiesta con CJ, perritas Chihuahua, Labradores y uno que otro gato que se coló a la fiesta. Los perros del vecindario apodaron a esta fiesta como <i>Proyecto P</i>, por lo que sobra decir cómo acabaron los invitados. Cuando su dueña regresó del viaje, fue tal la sorpresa que se llevó al encontrar todas las croquetas de Buddy regadas en el patio que, iracunda, le hizo $q$ preguntas a Buddy para saciar su enojo.
 
-El patio de Buddy está representado como una cuadricula de $N$ filas por $M$ columnas. Las croquetas están regadas por todo el terreno, sin embargo, hay cuadros que tienen más croquetas que otros cuadros.
+Las preguntas que le hizo a Buddy son de la forma: ¿cuántas croquetas se encuentran en el área $x_1, y_1,x_2,y_2$ del patio?
 
-La dueña de Buddy, furiosa le hizo $Q$ preguntas de la forma ¿Cuántas croquetas hay en el terreno $xi, yi, xj, yj$ donde $xi$ es el número de fila de la esquina superior izquierda del terreno, $yi$ es el número de columna de la esquina superior izquierada del terreno, $xj$ es el número de fila de la esquina inferior derecha del terreno y $yj$ es el número de columna de la esquina inferior derecha del terreno.
+El patio de Buddy puede ser representado como una matricula de $n$ filas por $m$ columnas, en donde $x_1,y_1$ representan la fila y la columna respectivamente del cuadro superior izquierdo del área, y $x_2,y_2$. representan la fila y la columna respectivamente del cuadro de la esquina inferior derecha del area.
 
-Buddy sabe que estas preguntas pueden ser contestadas eficientemente, si conociendo la cantidad de croquetas que hay en un terreno 
+Como la dueña de Buddy está muy enojada, sabe que podrá hacer hasta $10^6$ preguntas antes de que se le desaparezca el enojo.
 
+También sabe, que puede contestar eficientemente a sus preguntas sin tener que contar la cantidad total de croquetas que hay en cada cuadro del área especificada, ya que si sabe cuantas croquetas hay desde <b>la esquina superior izquierda</b> del patio hasta <b>cualquier cuadro del patio</b>, entonces puede realizar la operación que se muestra en la siguiente figura:
 
- 
-#Entrada.
+![Range Sum Query Bidimentional][1]
 
-#Salida.
+donde $S(X)$ representa la cantidad total de croquetas desde la esquina superior izquierda del patio hasta la posición $X$, y la parte sombreada representa el área del patio por la que se está preguntando.
 
-#Consideraciones.
+Finalmente, Buddy sabe que antes de comenzar a responder las preguntas necesita contar todas las croquetas que hay en cada posición del patio. Para no volver a contar las croquetas que hay en las posiciones previamente calculadas, Buddy puede aprovecharse de que, $f(i,j)=M_{i,j}$ + $f(i-1,j)$ + $f(i,j-1)$ - $f(i-1,j-1)$ para todo $1< i\leq n$, $1< j\leq m$ donde $f(i,j)$ representa la cantidad total de croquetas desde la esquina superior izquierda a la posición $i,j$ del patio, y $M_{i,j}$ representa la cantidad de croquetas en la posicion $i,j$ del patio.
+
+Como Buddy quiere evitar la fatiga, te ha pedido que le ayudes a tranquilizar a su dueña respondiendo estas preguntas.
+
+# Entrada.
+La primera línea contiene 3 números: $n,m,q$
+Las siguientes $n$ líneas contiene cada una $m$ números, que describen la cantidad de croquetas en cada posición del patio.
+Las siguientes $q$ líneas tiene cada una 4 números $x_1,y_1,x_2,y_2$ especificados arriba en la descripción.
+
+# Salida.
+
+Para cada pregunta de la forma $x_1,y_1,x_2,y_2$, se deberá imprimir en una sola líne "Pregunta #$k$= $s$" (sin comillas) donde $k$ representa el número de pregunta y $s$ representa la respuesta a la $k$-ésima pregunta.
+
+# Ejemplo
+
+||input
+3 4 5
+4 1 7 7
+9 3 6 2
+2 4 0 0
+1 1 3 4
+2 3 2 3
+2 2 3 3
+1 1 3 1
+1 1 1 4
+||output
+Pregunta #1: 45
+Pregunta #2: 6
+Pregunta #3: 13
+Pregunta #4: 15
+Pregunta #5: 19
+||end
+
+# Consideraciones.
+* Para 30% de los casos $1\leq n,m,q \leq 100$ 
+* Para 70% de los casos $100 < n,m,q \leq 1000$
 
 #Buddy te recuerda.
+Que cuando su dueña está enojada es un peligro para la humanidad.
 
+  [1]: data:image/png;base64,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
